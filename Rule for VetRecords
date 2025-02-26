@@ -1,0 +1,33 @@
+-- Database creation
+
+CREATE DATABASE VetRecords;
+
+-- Type and Rule creation
+
+CREATE TYPE ownerIdDom FROM CHAR(4);
+CREATE RULE ownerIdDomRule AS @value LIKE 'O___';
+EXEC SP_BINDRULE 'ownerIdDomRule','ownerIdDom';
+
+CREATE TYPE petIdDom FROM CHAR(4);
+CREATE RULE petIdDomRule AS @value LIKE 'P___';
+EXEC SP_BINDRULE 'petIdDomRule','petIdDom';
+
+CREATE TYPE treatIdDom FROM CHAR(6);
+CREATE RULE treatIdDomRule AS @value LIKE 'TR%';
+EXEC SP_BINDRULE 'treatIdDomRule','treatIdDom';
+
+CREATE TYPE apptIdDom FROM CHAR(6);
+CREATE RULE apptIdDomRule AS @value LIKE 'AP%';
+EXEC SP_BINDRULE 'apptIdDomRule','apptIdDom';
+
+CREATE TYPE staffIdDom FROM CHAR(4);
+CREATE RULE staffIdDomRule AS @value LIKE 'S___';
+EXEC SP_BINDRULE 'staffIdDomRule','staffIdDom';
+
+CREATE TYPE supIdDom FROM CHAR (4);
+CREATE RULE supIdDomRule AS (@value LIKE 'AC%') OR (@value LIKE 'MD%');
+EXEC SP_BINDRULE 'supIdDomRule','supIdDom';
+
+CREATE TYPE recIdDom FROM CHAR(6);
+CREATE RULE recIdDomRule AS @value LIKE 'RC%';
+EXEC SP_BINDRULE 'recIdDomRule','recIdDom';
