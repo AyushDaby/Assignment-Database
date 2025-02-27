@@ -121,3 +121,69 @@ ADD CONTRAINT unique_Barcode UNIQUE(Barcode);
 
 
 
+-- Owner Table
+CREATE TABLE Owner (
+owner_id ownerIdDom ,
+fname VARCHAR(25) NOT NULL,
+lname VARCHAR(25) NOT NULL,
+street VARCHAR(100),
+city VARCHAR(100),
+post_code VARCHAR(100),
+owner_email VARCHAR(50),
+owner_phoneNo VARCHAR(25) NOT NULL,
+pet_id petIdDom ,
+appointment_id apptIdDom,
+PRIMARY KEY(owner_id),
+FOREIGN KEY (pet_id) REFERENCES Pets(pet_id)
+				ON DELETE SET NULL
+				ON UPDATE CASCADE,
+FOREIGN KEY (appointment_id) REFERENCES Appointment(appointment_id)
+							 ON DELETE SET NULL
+							 ON UPDATE CASCADE,
+);
+
+
+
+---create index to allow better search result in the database
+CREATE INDEX emailIDX ON Owner (owner_email);
+
+--- creating an unique contraint to ensure that each owner email are unique
+ALTER TABLE Owner 
+ADD CONTRAINT unique_email UNIQUE(owner_email);
+
+
+
+-- Pet Table
+CREATE TABLE Pets (
+pet_id petIdDom ,
+name VARCHAR(50) NOT NULL,
+age SMALLINT NOT NULL,
+species VARCHAR(50) NOT NULL CHECK(species IN('mammals','birds','fish','reptiles')),
+owner_id owneridDom ,
+PRIMARY KEY (pet_id),
+FOREIGN KEY (owner_id) REFERENCES Owner(owner_id)
+					ON DELETE SET NULL
+					ON UPDATE CASCADE,
+);
+
+
+-- Medical Record Table
+CREATE TABLE MedicalRecord (
+record_id recIdDom,
+diagnosis TEXT,
+pet_id petIdDom,
+treatment_id treatIdDom,
+appointment_id apptIdDom,
+PRIMARY KEY (record_id),
+FOREIGN KEY (pet_id) REFERENCES Pets(pet_id)
+				   ON DELETE SET NULL
+				   ON UPDATE CASCADE,
+
+FOREIGN KEY (treatment_id) REFERENCES Treatments(treatment_id)
+						ON DELETE SET NULL
+						ON UPDATE CASCADE,
+
+FOREIGN KEY (appointment_id) REFERENCES Appoointment(appointment_id)
+							 ON DELETE SET NULL
+							 ON UPDATE CASCADE,
+);
