@@ -117,7 +117,7 @@ CREATE INDEX idx_Barcode ON supplyEquipment(Barcode);
 
 --- creating an unique contraint to ensure that each Barcodes are unique
 ALTER TABLE supplyEquipment
-ADD CONTRAINT unique_Barcode UNIQUE(Barcode);
+ADD CONSTRAINT unique_Barcode UNIQUE(Barcode);
 
 
 
@@ -149,7 +149,7 @@ CREATE INDEX emailIDX ON Owner (owner_email);
 
 --- creating an unique contraint to ensure that each owner email are unique
 ALTER TABLE Owner 
-ADD CONTRAINT unique_Oemail UNIQUE(owner_email);
+ADD CONSTRAINT unique_Oemail UNIQUE(owner_email);
 
 
 
