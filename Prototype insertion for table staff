@@ -1,19 +1,19 @@
 -- Inserting a veterinarian
 INSERT INTO Staff (staff_id, staff_name, email, phone_n, hire_date, Roles, salary, hours_worked, yrs_experience, appointment_id)
-VALUES (1, 'Dr. Sarah Smith', 'sarah.smith@example.com', '123-456-7890', '2020-05-15', 'vet', 9000, 40, 5, 101);
+VALUES ('S001', 'Dr. Sarah Smith', 'sarah.smith@gmail.com', '123-456-7890', '2020-05-15', 'vet', 38500, 40, 5, 101);
 
 -- Inserting a nurse
 INSERT INTO Staff (staff_id, staff_name, email, phone_n, hire_date, Roles, salary, hours_worked, yrs_experience, appointment_id)
-VALUES (2, 'Emily Johnson', 'emily.johnson@example.com', '234-567-8901', '2021-08-22', 'nurse', 6000, 35, 3, 102);
+VALUES ('S002', 'Emily Johnson', 'emily.johnson@gmail.com', '234-567-8901', '2021-08-22', 'nurse', 27600, 35, 3, 102);
 
 -- Inserting an admin staff member
 INSERT INTO Staff (staff_id, staff_name, email, phone_n, hire_date, Roles, salary, hours_worked, yrs_experience, appointment_id)
-VALUES (3, 'Michael Brown', 'michael.brown@example.com', '345-678-9012', '2019-03-10', 'admin', 5000, 40, 7, NULL);
+VALUES ('S003', 'Michael Brown', 'michael.brown@gmail.com', '345-678-9012', '2019-03-10', 'admin', 33000, 40, 7, NULL);
 
 -- Inserting another veterinarian
 INSERT INTO Staff (staff_id, staff_name, email, phone_n, hire_date, Roles, salary, hours_worked, yrs_experience, appointment_id)
-VALUES (4, 'Dr. Laura Davis', 'laura.davis@example.com', '456-789-0123', '2018-11-30', 'vet', 9500, 45, 8, 103);
+VALUES ('S004', 'Dr. Laura Davis', 'laura.davis@gmail.com', '456-789-0123', '2018-11-30', 'vet', 42200, 45, 8, 103);
 
 -- Inserting another nurse
 INSERT INTO Staff (staff_id, staff_name, email, phone_n, hire_date, Roles, salary, hours_worked, yrs_experience, appointment_id)
-VALUES (5, 'Jessica Wilson', 'jessica.wilson@example.com', '567-890-1234', '2022-02-14', 'nurse', 6500, 38, 2, 104);
+VALUES ('S005', 'Jessica Wilson', 'jessica.wilson@gmail.com', '567-890-1234', '2022-02-14', 'nurse', 25500, 38, 2, 104);
