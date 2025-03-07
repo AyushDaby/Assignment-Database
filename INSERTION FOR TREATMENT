@@ -10,4 +10,4 @@ VALUES
 ('TR0017', 'Ultrasound', 'Non-invasive imaging procedure using sound waves to examine internal organs and detect abnormalities in animals.', 300.00, NULL),
 ('TR0018', 'Wound Care', 'Treatment and care for wounds, including cleaning, suturing, and dressing, to promote healing and prevent infection.', 100.00, 'MD01'),
 ('TR0019', 'Flea and Tick Treatment', 'Application of medications to treat flea and tick infestations in pets.', 75.00, NULL),
-('TR0010', 'Allergy Testing', 'Test to identify allergens affecting an animal, often leading to a treatment plan for food or environmental allergies.', 180.00, 'MD01');
+('TR0020', 'Allergy Testing', 'Test to identify allergens affecting an animal, often leading to a treatment plan for food or environmental allergies.', 180.00, 'MD01');
