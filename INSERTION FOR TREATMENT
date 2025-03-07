@@ -1,0 +1,13 @@
+-- Inserting sample data into Treatments table for a veterinary system
+INSERT INTO Treatments (treatment_id, Treatment_name, Tdescription, cost, supply_id)
+VALUES
+('TR0011', 'Vaccination', 'Administering vaccines to animals to prevent diseases like rabies, distemper, and parvovirus.', 50.00, 'MD03'),
+('TR0012', 'Spaying', 'Surgical removal of the ovaries and uterus in female animals to prevent pregnancy and certain health issues.', 200.00, NULL),
+('TR0013', 'Neutering', 'Surgical removal of the testes in male animals to prevent unwanted breeding and health concerns.', 150.00, 'MD01'),
+('TR0014', 'Dental Cleaning', 'Routine cleaning of the animal’s teeth to remove plaque and tartar, promoting oral health.', 120.00, NULL),
+('TR0015', 'Emergency Surgery', 'Surgical procedures performed to address life-threatening injuries or conditions in animals.', 1500.00, 'MD03'),
+('TR0016', 'X-ray', 'Radiographic imaging to examine bones, organs, and tissues in animals for diagnosing injuries or conditions.', 250.00, NULL),
+('TR0017', 'Ultrasound', 'Non-invasive imaging procedure using sound waves to examine internal organs and detect abnormalities in animals.', 300.00, NULL),
+('TR0018', 'Wound Care', 'Treatment and care for wounds, including cleaning, suturing, and dressing, to promote healing and prevent infection.', 100.00, 'MD01'),
+('TR0019', 'Flea and Tick Treatment', 'Application of medications to treat flea and tick infestations in pets.', 75.00, NULL),
+('TR0010', 'Allergy Testing', 'Test to identify allergens affecting an animal, often leading to a treatment plan for food or environmental allergies.', 180.00, 'MD01');
