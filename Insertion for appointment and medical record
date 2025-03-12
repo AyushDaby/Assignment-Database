@@ -1,0 +1,28 @@
+INSERT INTO Appointment (appointment_id, appointment_date, appointment_time, staff_id, owner_id)
+VALUES
+('AP0001', '2023-10-15', '09:00:00', 'S001', 'O001'),
+('AP0002', '2023-10-15', '10:30:00', 'S002', 'O002'),
+('AP0003', '2023-10-16', '11:00:00', 'S003', 'O003'),
+('AP0004', '2023-10-16', '14:00:00', 'S004', 'O004'),
+('AP0005', '2023-10-17', '08:45:00', 'S005', 'O005'),
+('AP0006', '2023-10-17', '13:15:00', 'S001', 'O001'),
+('AP0007', '2023-10-18', '09:30:00', 'S002', 'O002'),
+('AP0008', '2023-10-18', '12:00:00', 'S003', 'O003'),
+('AP0009', '2023-10-19', '10:00:00', 'S004', 'O004'),
+('AP0010', '2023-10-19', '15:00:00', 'S005', 'O005');
+
+
+
+
+INSERT INTO MedicalRecord (record_id, diagnosis, pet_id, treatment_id, appointment_id)
+VALUES
+('RC0001', 'Fever and cough', 'P001', 'TR0011', 'AP0001'),
+('RC0002', 'Broken leg', 'P002', 'TR0015', 'AP0002'),
+('RC0003', 'Skin allergy', 'P003', 'TR0013', 'AP0003'),
+('RC0004', 'Dental issues', 'P004', 'TR0014', 'AP0004'),
+('RC0005', 'Routine checkup', 'P005', 'TR0011', 'AP0005'),
+('RC0006', 'Ear infection', 'P001', 'TR0018', 'AP0001'),
+('RC0007', 'Flea infestation', 'P002', 'TR0019', 'AP0002'),
+('RC0008', 'Allergic reaction', 'P003', 'TR0020', 'AP0003'),
+('RC0009', 'Broken wing', 'P004', 'TR0015', 'AP0004'),
+('RC0010', 'Vomiting and diarrhea', 'P005', 'TR0011', 'AP0005');
