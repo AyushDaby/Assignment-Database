@@ -32,39 +32,24 @@ END;
 ---------------------------MEDICAL RECORDS--------------------------------------------------------------------------------------------
 
 GO
-CREATE TRIGGER  tg_insert_appointment
+CREATE TRIGGER tg_insert_Medicalrecord
 ON MedicalRecord
 INSTEAD OF INSERT
 AS
 BEGIN
-    DECLARE @rec_id recIdDom, 
-            @diagnosis_text TEXT, 
-            @pet petIdDom , 
-            @treat treatIdDom, 
-            @appoint apptIdDom;
-   
-     SELECT 
-        @rec_id = record_id, 
-        @diagnosis_text = diagnosis, 
-        @pet = pet_id , 
-        @treat = treatment_id, 
-        @appoint = appointment_id
-     FROM INSERTED;
-
-  
-    IF (@rec_id IS NULL)
+    
+    IF EXISTS (SELECT 1 FROM INSERTED WHERE record_id IS NULL)
     BEGIN
         PRINT 'Please enter the record id';
         RETURN;
     END;
 
-    INSERT INTO MedicalRecord(record_id, diagnosis, pet_id, treatment_id, appointment_id)
+    
+    INSERT INTO MedicalRecord (record_id, diagnosis, pet_id, treatment_id, appointment_id)
     SELECT record_id, diagnosis, pet_id, treatment_id, appointment_id
     FROM INSERTED;
 END;
-
-
-
+    
 
 
 
