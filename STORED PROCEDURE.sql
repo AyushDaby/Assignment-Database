@@ -1,3 +1,4 @@
+-- Stored procedure to display medical record
 CREATE PROCEDURE sp_disp_record
 @pet_id CHAR(4),
 @record_id CHAR(6)
