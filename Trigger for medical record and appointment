@@ -1,0 +1,76 @@
+CREATE TRIGGER tg_insert_appointment
+ON Appointment
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @app_id apptIdDom, 
+            @app_date DATE, 
+            @app_time TIME, 
+            @staff staffIdDom, 
+            @owner ownerIdDom;
+   
+    SELECT 
+        @app_id = appointment_id, 
+        @app_date = appointment_date,
+        @app_time = appointment_time,
+        @staff = staff_id,
+        @owner = owner_id
+    FROM INSERTED;
+
+  
+    IF (@app_id IS NULL)
+    BEGIN
+        PRINT 'Please enter the appointment id';
+        RETURN;
+    END;
+
+    INSERT INTO Appointment (appointment_id, appointment_date, appointment_time, staff_id, owner_id)
+    SELECT appointment_id, appointment_date, appointment_time, staff_id, owner_id
+    FROM INSERTED;
+END;
+
+---------------------------MEDICAL RECORDS--------------------------------------------------------------------------------------------
+
+GO
+CREATE TRIGGER  tg_insert_appointment
+ON MedicalRecord
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @rec_id recIdDom, 
+            @diagnosis_text TEXT, 
+            @pet petIdDom , 
+            @treat treatIdDom, 
+            @appoint apptIdDom;
+   
+     SELECT 
+        @rec_id = record_id, 
+        @diagnosis_text = diagnosis, 
+        @pet = pet_id , 
+        @treat = treatment_id, 
+        @appoint = appointment_id
+     FROM INSERTED;
+
+  
+    IF (@rec_id IS NULL)
+    BEGIN
+        PRINT 'Please enter the record id';
+        RETURN;
+    END;
+
+    INSERT INTO MedicalRecord(record_id, diagnosis, pet_id, treatment_id, appointment_id)
+    SELECT record_id, diagnosis, pet_id, treatment_id, appointment_id
+    FROM INSERTED;
+END;
+
+
+
+
+
+
+
+
+
+
+
+
