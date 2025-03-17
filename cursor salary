@@ -1,0 +1,34 @@
+DECLARE @staff_id staffIdDom;
+DECLARE @yrs_experience INT;
+DECLARE @current_salary INT;
+
+-- Declare the cursor
+DECLARE salary_cursor CURSOR FOR
+SELECT staff_id, yrs_experience, salary
+FROM Staff;
+
+-- Open the cursor
+OPEN salary_cursor;
+
+-- Fetch the first row
+FETCH NEXT FROM salary_cursor INTO @staff_id, @yrs_experience, @current_salary;
+
+-- Loop through all rows
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    -- Check if the employee has more than 5 years of experience
+    IF @yrs_experience > 5
+    BEGIN
+        -- Update the salary by 5%
+        UPDATE Staff
+        SET salary = @current_salary * 1.05
+        WHERE staff_id = @staff_id;
+    END;
+
+    -- Fetch the next row
+    FETCH NEXT FROM salary_cursor INTO @staff_id, @yrs_experience, @current_salary;
+END;
+
+-- Close and deallocate the cursor
+CLOSE salary_cursor;
+DEALLOCATE salary_cursor;
