@@ -1,0 +1,59 @@
+GRANT ALL PRIVILEGES ON Medicalhistory 
+TO	ClinicAdmin WITH GRANT OPTION;
+GO
+Create view Medicalhistory(record_id,pet_id,diagnosis)
+AS SELECT M.record_id, M.diagnosis, P.pet_id
+From MedicalRecord M , Pets P
+Where M.pet_id = P.pet_id;
+go
+--------------------------mo p create ClinicAdmin------------------------------------
+CREATE LOGIN clinicAdmin 
+WITH PASSWORD = '12345'; 
+GO
+CREATE USER ClinicAdmin FOR LOGIN clinicAdmin; 
+GO
+---------------------------------GRANT ACCESS TO VET AND NURSE ON Treatments-----------------------------------------------------------
+GRANT SELECT, UPDATE (Treatment_name, Tdescription) ON Treatments
+TO nurse, vet;
+GO
+--------------------------------GRANT ACCESS TO VET AND NURSE ON MedicalRECORDS-------------------------------------------------
+GRANT SELECT, UPDATE (diagnosis) ON MedicalRecord
+TO nurse, vet;
+go
+--------------------------LOGIN NURSE------------------------------------------------------
+CREATE LOGIN nurse 
+WITH PASSWORD = '1818'; 
+GO
+CREATE USER nurse FOR LOGIN nurse; 
+go
+--------------------------LOGIN VET-------------------------------------------------------------------
+CREATE LOGIN vet
+WITH PASSWORD = '1919'; 
+go
+CREATE USER vet FOR LOGIN vet; 
+GO
+------------------------------------CREATE TO SEE NUMBER OF PET OWN BY OWNER----------------------------------------------------------------
+CREATE VIEW numofpet1 AS
+SELECT DISTINCT(O.owner_id),P.pet_id COUNT(*) AS cnt
+FROM Owner O
+JOIN Pets P ON P.owner_id = O.owner_id
+GROUP BY O.owner_id, P.pet_id;
+GO
+select * from numofpet1;
+-----------------------------------------giving privileges to the ClinicAdmin---------------------------------------------------------------------------------
+
+GRANT ALL PRIVILEGES ON Owner
+TO	ClinicAdmin WITH GRANT OPTION;
+GO
+GRANT ALL PRIVILEGES ON Pets
+TO	ClinicAdmin WITH GRANT OPTION;
+GO
+GRANT ALL PRIVILEGES ON SupplyTreatment
+TO	ClinicAdmin WITH GRANT OPTION;
+GO
+GRANT ALL PRIVILEGES ON staff 
+TO	ClinicAdmin WITH GRANT OPTION;
+GO
+GRANT ALL PRIVILEGES ON Appointement
+TO	ClinicAdmin WITH GRANT OPTION;
+GO
