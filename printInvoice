@@ -1,0 +1,54 @@
+CREATE PROCEDURE PrintInvoice
+    @appointment_id apptIdDom
+AS
+BEGIN
+    -- Declare variables to store invoice details
+	DECLARE @appointment_date date;
+    DECLARE @appointment_time TIME;
+    DECLARE @staff_name VARCHAR(40);
+    DECLARE @owner_name VARCHAR(50);
+    DECLARE @pet_name VARCHAR(50);
+    DECLARE @total_cost DECIMAL(10,2);
+
+    -- Fetch appointment details
+	SELECT 
+        @appointment_id = a.appointment_id,
+        @appointment_time = a.appointment_time,
+        @staff_name = s.staff_name,
+        @owner_name = o.fname + ' ' + o.lname,
+        @pet_name = p.name
+   
+    FROM Appointment a
+    JOIN Staff s ON a.staff_id = s.staff_id
+    JOIN Owner o ON a.owner_id = o.owner_id
+    JOIN Pets p ON o.pet_id = p.pet_id
+    WHERE a.appointment_id = @appointment_id;
+
+    -- Calculate total cost of treatments for the appointment
+    SELECT @total_cost = SUM(t.cost)
+    FROM MedicalRecord m
+    JOIN Treatments t ON m.treatment_id = t.treatment_id
+    WHERE m.appointment_id = @appointment_id;
+
+    -- Print the invoice header
+    PRINT 'Invoice for Appointment ID: ' + @appointment_id;
+    PRINT 'Appointment Date: ' + CAST(@appointment_date AS VARCHAR);
+    PRINT 'Appointment Time: ' + CAST(@appointment_time AS VARCHAR);
+    PRINT 'Staff Name: ' + @staff_name;
+    PRINT 'Owner Name: ' + @owner_name;
+    PRINT 'Pet Name: ' + @pet_name;
+    PRINT '----------------------------------------';
+
+    -- Print treatment details
+    SELECT 
+        'Treatment: ' + t.Treatment_name AS Treatment,
+        'Cost: $' + CAST(t.cost AS VARCHAR) AS Cost
+    FROM MedicalRecord m
+    JOIN Treatments t ON m.treatment_id = t.treatment_id
+    WHERE m.appointment_id = @appointment_id;
+
+    -- Print the total cost
+    PRINT 'Total Cost: $' + CAST(@total_cost AS VARCHAR);
+END;
+
+EXEC PrintInvoice 'AP0001';
