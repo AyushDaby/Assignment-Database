@@ -1,0 +1,30 @@
+
+CREATE TRIGGER tg_update_supplyEquipment
+ON supplyEquipment
+AFTER UPDATE
+AS
+BEGIN
+    DECLARE @supply_id supIdDom,
+            @quantity INT;
+
+    -- Get values from the INSERTED table
+    SELECT 
+        @supply_id = supply_id,
+        @quantity = quantity
+    FROM INSERTED;
+
+    -- Check if quantity is greater than 0
+    IF (@quantity <= 0)
+    BEGIN
+        PRINT 'Supply out of stock: Quantity cannot be zero or negative.';
+    END
+    ELSE
+    BEGIN
+        PRINT 'Supply in stock: Row updated successfully.';
+    END;
+END;
+
+UPDATE supplyEquipment SET quantity = 90 WHERE supply_id = 'AC02';
+
+
+SELECT * FROM [Owner];
